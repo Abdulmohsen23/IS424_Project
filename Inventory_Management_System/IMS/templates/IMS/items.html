@@ -1,0 +1,61 @@
+{% extends 'IMS/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="text-center caveat-styling mt-4 mb-4" style="color:white;">
+            <h1>View Items</h1>
+        </div>
+        <div class="form-container container mb-5 bg-light shadow-md p-5">
+            <form method="get" >
+                {% csrf_token %}
+                <label for="registered" style="font-size:20px; font-weight:bold;">Show My Items:&nbsp</label>
+                <input type="checkbox" id="registered" name="registered" {% if registered_only %}checked{% endif %}>
+                <br>
+                <button type="submit" class="btn btn-primary w-100 btn-block p-2 mt-4">Apply Filter</button>
+            </form>
+            <a class="btn btn-success w-100 btn-block p-2 mt-4" href="{% url 'create_item' %}">
+                Add Item
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-primary caveat-styling" style="font-size: 1.2em;"> 
+                    <tr class="text-center">
+                        <th scope="col">Name</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if items %}
+                        {% for item in items %}
+                            <tr class="text-center">
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.created_date }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>
+                                    <a class="btn btn-success ml-2" href="{% url 'view_item' item.id %}">
+                                         View
+                                    </a>
+                                    <a class="btn btn-primary ml-2" href="{% url 'update_item' item.id %}">
+                                         Update
+                                    </a>
+                            
+                                    <a class="btn btn-danger ml-2" href="{% url 'delete_item' item.id %}">
+                                         Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6" class="text-center">NO items found.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

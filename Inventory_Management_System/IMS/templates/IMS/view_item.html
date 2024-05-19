@@ -1,0 +1,31 @@
+{% extends 'IMS/base.html' %}
+
+{% block content %}
+
+<div class="container" style="width:100vw;">
+    <div class="card shadow my-5" style="height: 100%;">
+        <div class="card-body">
+            <div class="d-flex align-items-center" style="font-size: 1.5em;">
+                <p class="bold-styling" style="font-weight:bolder; font-size:30px;">Name: {{ item.name }}</p>
+            </div>
+            <br>
+            <p class="bold-styling">Created Date:{{ item.created_date }}</p>
+            <p class="bold-styling">Quantity: {{ item.quantity }}</p> 
+            <p class="bold-styling">Description: {{ item.description }}</p>
+            <div class="mt-4 text-center mb-5"> 
+                {% if registered %}
+                <a class="btn btn-success" href="{% url 'register_item' item.id %}">
+                     Un-Register an item
+                </a>
+                {% else %}
+                    <a class="btn btn-success" href="{% url 'register_item' item.id %}">
+                        Register an item
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

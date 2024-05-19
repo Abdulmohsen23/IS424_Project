@@ -1,0 +1,33 @@
+{% extends 'IMS/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container form-container p-5 bg-light shadow ">
+        <h2 class="text-center caveat-styling" style="text-decoration:underline;">WELCOME</h2>
+        <div class="text-center">
+            <img src="{% static 'images/logo.jpg' %}" alt="EMS Banner" style="max-width: 320px;">
+        </div>
+        <hr class="my-4">
+        <div class="text-center mt-3 w-100 bg-black">
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+                <button type="submit" class="btn btn-primary p-2">
+                    Login
+                </button>
+            </div>
+
+        </form>
+
+        <div class="text-center mt-3">
+            <p class="caveat-styling" style="font-size:larger;">Don't have an account?</p>
+            <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

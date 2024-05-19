@@ -1,0 +1,28 @@
+{% extends 'IMS/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <body>
+        <div class="container form-container bg-light shadow-md p-5" id="signup-container">
+            <h2 class="text-center caveat-styling"> Create your account </h2>
+            <div class="text-center">
+                <img src="{% static 'images/logo.jpg' %}" alt="Your Image" class="img-fluid" style="max-width: 320px;">
+            </div>
+            <hr>
+            <div class="text-center mt-3 w-100 bg-black">
+            <form method="POST" autocomplete="off" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100 btn-block p-2 mt-4">
+                     Create account
+                </button>
+
+            </form>
+            </div>
+            <div class="text-center mt-3">
+                <p style="font-size:larger;" class="caveat-styling"> Already Registered? </p> <a href="{% url 'log_in' %}" class="btn btn-success"> Login </a>
+            </div>
+        </div>
+    </body>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'IMS/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<body>
+
+    <div class="form-container container bg-light shadow-md p-5 my-4">
+
+        <h5 class="text-center caveat-styling"> Update Existing Items </h5>
+        <hr>
+        <br>
+
+        <form method="POST" autocomplete="off">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">             
+                    Update Item
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+{% endblock %}
